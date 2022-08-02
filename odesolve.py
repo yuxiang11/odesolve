@@ -9,7 +9,7 @@
 
 def euler(f, x, t, h):
     """Perform one step of the Euler method"""
-    return x + f(x, t)*h
+    return x + f(x, t) * h
 
 
 def rk4(f, x, t, h):
@@ -23,7 +23,14 @@ def rk4(f, x, t, h):
 
 def solveto(f, x1, t1, t2, hmax, method=euler):
     """Use many steps of method to get from x1,t1 to x2,t2"""
-    pass
+    while t1 < t2:
+        # If the stepsize does not evenly divide the interval,
+        # then the last step uses t2 instead of using t1 + hmax
+        h = hmax if t1 + hmax < t2 else t2-t1
+        # If the method is rk4 then use rk4 else use euler
+        x1 = rk4(f, x1, t1, h) if method == rk4 else euler(f, x1, t1, h)
+        t1 += h
+    return x1  # This x1 is actually the final x2
 
 
 def odesolve(f, X0, t, hmax, method=euler):
