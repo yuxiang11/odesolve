@@ -9,12 +9,16 @@
 
 def euler(f, x, t, h):
     """Perform one step of the Euler method"""
-    pass
+    return x + f(x, t)*h
 
 
 def rk4(f, x, t, h):
     """Perform one step of the RK$ method"""
-    pass
+    k1 = f(x, t)
+    k2 = f(x + k1 * h / 2, t + h / 2)
+    k3 = f(x + k2 * h / 2, t + h / 2)
+    k4 = f(x + k3 * h, t + h)
+    return x + (k1 + 2 * k2 + 2 * k3 + k4) * h / 6
 
 
 def solveto(f, x1, t1, t2, hmax, method=euler):
