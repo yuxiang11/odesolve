@@ -7,6 +7,8 @@
 # You should fill out the code for the functions below so that they pass the
 # tests in test_odesolve.py
 
+import numpy as np      # array is needed for odesolve
+
 def euler(f, x, t, h):
     """Perform one step of the Euler method"""
     return x + f(x, t) * h
@@ -35,4 +37,9 @@ def solveto(f, x1, t1, t2, hmax, method=euler):
 
 def odesolve(f, X0, t, hmax, method=euler):
     """Compute the solution at different values of t"""
-    pass
+    result = []
+    for i in t:
+        result.append(solveto(f, X0[0], 0, i, hmax, method))    # X0[0] is used because X0 is an array
+    return np.array(result)
+
+
