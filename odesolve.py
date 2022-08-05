@@ -37,7 +37,7 @@ def solveto(f, x1, t1, t2, hmax, method=euler):
 
 def odesolve(f, X0, t, hmax, method=euler):
     """Compute the solution at different values of t"""
-    if isinstance(X0, np.ndarray):          # This checks whether the X0 is np.array 
+    if isinstance(X0, np.ndarray):          # This checks whether the X0 is np.array
         result = []
         for i in t:
             result.append(solveto(f, X0, 0, i, hmax, method))
